@@ -14,8 +14,6 @@ services:
   backend:
     image: tapp41k/kittygram_backend
     env_file: .env
-    depends_on:
-      - db
     volumes:
       - static:/static/
       - media:/app/media/
