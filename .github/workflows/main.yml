@@ -155,6 +155,9 @@ jobs:
       - build_and_push_to_docker_hub
       - build_frontend_and_push_to_docker_hub
       - build_gateway_and_push_to_docker_hub
+    env:
+      HOST: ${{ secrets.HOST }}
+      ROOT_PATH: /home/yc-user/
     steps:
     - name: Checkout repo
       uses: actions/checkout@v3
