@@ -11,7 +11,7 @@ load_dotenv()
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = bool(distutils.util.strtobool(os.getenv('DEBUG', 'false'))) 
+DEBUG = bool(distutils.util.strtobool(os.getenv('DEBUG', 'false')))
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'default_hosts').split(',')
 
