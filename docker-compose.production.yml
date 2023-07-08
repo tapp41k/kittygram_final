@@ -5,30 +5,31 @@ volumes:
   static:
   media:
 
-
 services:
   db:
-    image: postgres:13.10
+    image: postgres:13
     env_file: .env
     volumes:
-      - pg_data:/var/lib/postgresql/data
+      - pg_data:/var/lib/postgres/data
   backend:
     image: tapp41k/kittygram_backend
     env_file: .env
+    depends_on:
+      - db
     volumes:
-      - static:/backend_static
-      - media:/app/media
+      - static:/static/
+      - media:/app/media/
   frontend:
-    image: tapp41k/kittygram_frontend  # Качаем с Docker Hub
     env_file: .env
-    command: cp -r /app/build/. /frontend_static/
+    image: tapp41k/kittygram_frontend
+    command: cp -r /app/build/. /static/
     volumes:
       - static:/static
   gateway:
-    image: tapp41k/kittygram_gateway # Качаем с Docker Hub
+    image: tapp41k/kittygram_gateway
     env_file: .env
-    volumes:
-      - static:/static
-      - media:/media
     ports:
       - 9000:80
+    volumes:
+      - static:/static
+      - media:/app/media/
