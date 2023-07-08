@@ -13,19 +13,19 @@ services:
     volumes:
       - pg_data:/var/lib/postgresql/data
   backend:
-    image: tapp41k/taski_backend
+    image: tapp41k/kittygram_backend
     env_file: .env
     volumes:
       - static:/backend_static
       - media:/app/media
   frontend:
-    image: tapp41k/taski_frontend  # Качаем с Docker Hub
+    image: tapp41k/kittygram_frontend  # Качаем с Docker Hub
     env_file: .env
     command: cp -r /app/build/. /frontend_static/
     volumes:
       - static:/static
   gateway:
-    image: tapp41k/taski_gateway  # Качаем с Docker Hub
+    image: tapp41k/kittygram_gateway # Качаем с Docker Hub
     env_file: .env
     volumes:
       - static:/static
