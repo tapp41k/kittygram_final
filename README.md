@@ -35,7 +35,7 @@ sudo docker compose -f docker-compose.production.yml up
 Клонируем себе репозиторий: 
 
 ```bash 
-git clone git@github.com:MihailovAlexander/kittygram_final.git
+git clone git@github.com:tapp41k/kittygram_final.git
 ```
 
 Выполняем запуск:
@@ -49,11 +49,11 @@ sudo docker compose -f docker-compose.yml up
 После запуска необходимо выполнить сбор статистики и миграции бэкенда. Статистика фронтенда собирается во время запуска контейнера, после чего он останавливается. 
 
 ```bash
-sudo docker compose -f [имя-файла-docker-compose.yml] exec backend python manage.py migrate
+sudo docker compose -f docker-compose.production.yml exec backend python manage.py migrate
 
-sudo docker compose -f [имя-файла-docker-compose.yml] exec backend python manage.py collectstatic
+sudo docker compose -f docker-compose.production.yml exec backend python manage.py collectstatic
 
-sudo docker compose -f [имя-файла-docker-compose.yml] exec backend cp -r /app/collected_static/. /static/static/
+sudo docker compose -f docker-compose.production.yml exec backend cp -r /app/collected_static/. /backend_static/static/
 ```
 
 И далее проект доступен на: 
