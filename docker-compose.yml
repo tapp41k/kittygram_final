@@ -11,6 +11,8 @@ services:
     env_file: .env
     volumes:
       - pg_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=kittygram_password
   backend:
     build: ./backend/
     env_file: .env
