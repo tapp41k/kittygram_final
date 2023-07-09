@@ -10,24 +10,24 @@ services:
     image: postgres:13
     env_file: .env
     volumes:
-      - pg_data:/var/lib/postgres/data
+      - pg_data:/var/lib/postgresql/data
   backend:
     image: tapp41k/kittygram_backend
     env_file: .env
     volumes:
-      - static:/static/
-      - media:/app/media/
+      - static:/backend_static
+      - media:/app/media
+    depends_on:
+      - db
   frontend:
-    env_file: .env
     image: tapp41k/kittygram_frontend
     command: cp -r /app/build/. /static/
     volumes:
       - static:/static
   gateway:
     image: tapp41k/kittygram_gateway
-    env_file: .env
     ports:
       - 9000:80
     volumes:
       - static:/static
-      - media:/app/media/
+      - media:/media
