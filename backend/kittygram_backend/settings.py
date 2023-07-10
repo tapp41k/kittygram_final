@@ -1,6 +1,5 @@
 # flake8: noqa
 import os
-import distutils.util
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -11,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = bool(distutils.util.strtobool(os.getenv('DEBUG', 'false'))) 
+DEBUG = bool(os.getenv('DEBUG', True))
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'default_hosts').split(',')
 
